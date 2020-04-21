@@ -50,8 +50,11 @@ if __name__ == "__main__":
             errors.append("\033[1;31m" + b["ID"] + "\033[0m" + ": " + b["title"])
             db.entries.append(b)
         else:
-            result.entries[0]["ID"] = b["ID"]
-            db.entries.append(result.entries[0])
+            for i in range(len(result.entries)):
+                if result.entries[i]["title"] == b["title"]:
+                    break
+            result.entries[i]["ID"] = b["ID"]
+            db.entries.append(result.entries[i])
 
         n = n + 1
         bar.update(n)
